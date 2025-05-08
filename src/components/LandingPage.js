@@ -1,6 +1,6 @@
 import '../App.css';
 import React from "react";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import LoginForm from './LoginForm';
 import LandingNavbar from './LandingNavbar';
 
