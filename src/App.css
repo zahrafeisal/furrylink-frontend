@@ -398,7 +398,7 @@
 }
 
 .navLinks i:hover, .navLink2 i:hover {
-  color: rgb(2, 126, 203);
+  color: rgb(2, 126, 203) !important;
 }
 
 /* User profile styles */
