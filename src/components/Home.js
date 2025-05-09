@@ -99,7 +99,7 @@ function Home() {
                                             <small style={{color: 'gray'}}>Registered Shelter<i style={{marginLeft: '1px'}} className="fa-regular fa-registered"></i></small>
                                         ): null}
                                     </div>
-                                    {!(currentUser.animal_shelter) ? (
+                                    {!(currentUser.animal_shelter || currentUser.id === pet.user_id) ? (
                                         <div className='applyLink'>
                                             <small onClick={() => handleAdoptClick(pet)}>Apply now</small>
                                         </div>
