@@ -344,14 +344,14 @@ function UserProfile({ fetchUser }) {
                 {petsAdded.length === 0 ? (
                     <p 
                       style={{color: 'gray', fontSize: '20px', marginLeft: '44%'}} 
-                      className='tinos-regular'
+                      className='poppins-regular'
                     >
                         <i style={{paddingRight: '10px'}} className="fa-solid fa-circle-exclamation"></i>
                         No posts yet.
                     </p>
                 ) : (
                     petsAdded.map((pet) => (
-                    <div key={pet.id} className='homeCard' style={{width: '40rem', height: '15rem'}}>
+                    <div key={pet.id} className='homeCard' style={{width: '80rem', height: '15rem'}}>
                         <div className='cardImg'>
                             <img src={`https://furrylink-backend.onrender.com/uploads/${pet.image_filename}`} alt={pet.breed} />
                         </div>
