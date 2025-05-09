@@ -60,8 +60,7 @@ function App() {
         fetchCurrentUser();
     }, []);
 
-    // Fetch pets data on initial load
-    useEffect(() => {
+    const fetchPets = () => {
         fetch(`${API_BASE}/pets`, {
             credentials: 'include',
         })
@@ -76,6 +75,11 @@ function App() {
         .catch((error) => {
             console.log(error.message);
         });
+    }
+
+    // Fetch pets data on initial load
+    useEffect(() => {
+        fetchPets();
     }, []);
 
     const contextValue = {
@@ -119,7 +123,7 @@ function App() {
                     path='/pets'
                     element={
                         <PrivateRoute currentUser={currentUser} isCheckingAuth={isCheckingAuth}>
-                            <AddPet />
+                            <AddPet fetchPets={fetchPets} />
                         </PrivateRoute>
                     }
                 />

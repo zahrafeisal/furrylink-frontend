@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 import Navbar from "./Navbar";
 import { UserContext } from "./UserContext";
 
-function AddPet() { 
+function AddPet({ fetchPets }) { 
     const API_BASE = process.env.REACT_APP_API_URL;
     const [errorMessage, setErrorMessage] = useState(null);
     const { currentUser } = useContext(UserContext);
@@ -61,7 +61,8 @@ function AddPet() {
                 }
             })
             .then((pet) => {
-                console.log(pet.breed)
+                fetchPets();
+                console.log(pet)
             })
             .catch((error) => {
                 setErrorMessage(error.message)
