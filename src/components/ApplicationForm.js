@@ -225,7 +225,7 @@ const ApplicationForm = ({ currentUser }) => {
                       }}
                     />
                     {formik.touched.description && formik.errors.description ? (  
-                        <div style={{ color: 'red' }}>{formik.errors.description}</div>  
+                        <div style={{ color: 'red', paddingTop: '3px', fontSize: '.9rem' }}>{formik.errors.description}</div>  
                     ) : null}  
                 </div>
                 <input 
