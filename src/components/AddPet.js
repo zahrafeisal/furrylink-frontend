@@ -56,12 +56,12 @@ function AddPet({ fetchPets }) {
                 if (response.ok) {
                     resetForm();
                     setErrorMessage(null);
+                    fetchPets();
                     navigate("/home")
                     return response.json();
                 }
             })
             .then((pet) => {
-                fetchPets();
                 console.log(pet)
             })
             .catch((error) => {
