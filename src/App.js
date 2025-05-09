@@ -1,6 +1,7 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { UserContext, UserProvider } from './components/UserContext';
 import Home from './components/Home';
 import SignupForm from './components/SignUp';
 import LandingPage from './components/LandingPage';
@@ -77,14 +78,24 @@ function App() {
         });
     }, []);
 
+    const contextValue = {
+        currentUser,
+        setCurrentUser,
+        isCheckingAuth,
+        setIsCheckingAuth,
+        pets,
+        setPets
+    }
+
     return (
-        <Router>
+        <UserProvider value={contextValue}>
+            <Router>
             <Routes>
                 {/* Public routes */}
-                <Route path='/' element={<LandingPage onLogin={setCurrentUser} />} />
+                <Route path='/' element={<LandingPage />} />
                 <Route path='/about' element={<About />} />
-                <Route path='/users' element={<SignupForm onSignUp={setCurrentUser} />} />
-                <Route path='/login' element={<Login onLogin={setCurrentUser} />} />
+                <Route path='/users' element={<SignupForm />} />
+                <Route path='/login' element={<Login />} />
                 <Route path='/unauthorized' element={<Unauthorized />} />
 
                 {/* Protected routes */}
@@ -92,7 +103,7 @@ function App() {
                     path='/home'
                     element={
                         <PrivateRoute currentUser={currentUser} isCheckingAuth={isCheckingAuth}>
-                            <Home pets={pets} user={currentUser} />
+                            <Home />
                         </PrivateRoute>
                     }
                 />
@@ -100,7 +111,7 @@ function App() {
                     path='/user/:id'
                     element={
                         <PrivateRoute currentUser={currentUser} isCheckingAuth={isCheckingAuth}>
-                            <UserProfile user={currentUser} setUpdatedUser={setCurrentUser} fetchUser={fetchCurrentUser} />
+                            <UserProfile fetchUser={fetchCurrentUser} />
                         </PrivateRoute>
                     }
                 />
@@ -108,7 +119,7 @@ function App() {
                     path='/pets'
                     element={
                         <PrivateRoute currentUser={currentUser} isCheckingAuth={isCheckingAuth}>
-                            <AddPet user={currentUser} />
+                            <AddPet />
                         </PrivateRoute>
                     }
                 />
@@ -116,7 +127,7 @@ function App() {
                     path='/reviews'
                     element={
                         <PrivateRoute currentUser={currentUser} isCheckingAuth={isCheckingAuth}>
-                            <ReviewForm user={currentUser} />
+                            <ReviewForm />
                         </PrivateRoute>
                     }
                 />
@@ -124,7 +135,7 @@ function App() {
                     path='/application'
                     element={
                         <PrivateRoute currentUser={currentUser} isCheckingAuth={isCheckingAuth}>
-                            <ApplicationForm currentUser={currentUser} />
+                            <ApplicationForm />
                         </PrivateRoute>
                     }
                 />
@@ -132,7 +143,7 @@ function App() {
                     path='/pet-applications'
                     element={
                         <PrivateRoute currentUser={currentUser} isCheckingAuth={isCheckingAuth}>
-                            <ApplicationsReceived user={currentUser} />
+                            <ApplicationsReceived />
                         </PrivateRoute>
                     }
                 />
@@ -140,7 +151,7 @@ function App() {
                     path='/sent-applications'
                     element={
                         <PrivateRoute currentUser={currentUser} isCheckingAuth={isCheckingAuth}>
-                            <ApplicationsSent currentUser={currentUser} />
+                            <ApplicationsSent />
                         </PrivateRoute>
                     }
                 />
@@ -148,7 +159,7 @@ function App() {
                     path='/pet-application/:id'
                     element={
                         <PrivateRoute currentUser={currentUser} isCheckingAuth={isCheckingAuth}>
-                            <AppRcvdDetails user={currentUser} />
+                            <AppRcvdDetails />
                         </PrivateRoute>
                     }
                 />
@@ -156,12 +167,13 @@ function App() {
                     path='/sent-application/:id'
                     element={
                         <PrivateRoute currentUser={currentUser} isCheckingAuth={isCheckingAuth}>
-                            <AppSentDetails user={currentUser} />
+                            <AppSentDetails />
                         </PrivateRoute>
                     }
                 />
             </Routes>
-        </Router>
+            </Router>
+        </UserProvider>
     );
 }
 

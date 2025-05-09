@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import LoginForm from './LoginForm';
 import LandingNavbar from './LandingNavbar';
 
-function LandingPage({ onLogin }) {
+function LandingPage() {
     return (
         <>
         <LandingNavbar />
@@ -16,7 +16,7 @@ function LandingPage({ onLogin }) {
                 left: '800px',
                 top: '10%'
             }}>
-                <LoginForm onLogin={onLogin} />
+                <LoginForm />
             </div>
         </div>
         <div className='landingGallery'>
